@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#050505">
+  <meta name="color-scheme" content="dark">
+  <title>Open Market</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body class="store-page">
+  <div class="noise" aria-hidden="true"></div>
+  <div class="aurora aurora-one" aria-hidden="true"></div>
+  <div class="aurora aurora-two" aria-hidden="true"></div>
+
+  <main class="site-shell">
+    <header class="topbar glassbar">
+      <a class="identity" href="./index.html" aria-label="거래글 홈">
+        <span class="avatar" id="sellerAvatar">O</span>
+        <span>
+          <span class="micro-label">OPEN MARKET</span>
+          <strong id="sellerName">판매자</strong>
+        </span>
+      </a>
+      <div class="top-actions">
+        <button class="round-action" id="shareBtn" type="button" aria-label="거래글 공유">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0-12 4 4m-4-4L8 7M5 12v7h14v-7"/></svg>
+        </button>
+        <a class="admin-chip" href="./admin.html">관리</a>
+      </div>
+    </header>
+
+    <section class="hero-v2">
+      <div class="hero-copy">
+        <span class="live-badge"><i></i> 지금 거래 가능</span>
+        <h1>찾던 아이템,<br><em>한눈에 보고 거래.</em></h1>
+        <p>가격, 수량, 상태를 빠르게 확인하고 원하는 아이템을 눌러 상세 정보와 오픈프로필을 확인하세요.</p>
+      </div>
+      <aside class="seller-card glass-card">
+        <div class="seller-card-top">
+          <div>
+            <span class="micro-label">SELLER</span>
+            <h2 id="sellerCardName">판매자</h2>
+          </div>
+          <span class="status-orb" aria-hidden="true"></span>
+        </div>
+        <div class="seller-metrics">
+          <div><b id="itemCountNumber">0</b><span>판매중</span></div>
+          <div><b>OPEN</b><span>문의채널</span></div>
+        </div>
+        <button class="seller-cta" id="openProfileHero" type="button">오픈프로필 바로가기 <span>↗</span></button>
+      </aside>
+    </section>
+
+    <section class="market-section">
+      <div class="section-head">
+        <div>
+          <span class="section-kicker">AVAILABLE NOW</span>
+          <h2>판매 아이템</h2>
+        </div>
+        <span class="count-bubble" id="itemCount">0 items</span>
+      </div>
+      <div class="market-grid" id="grid" aria-live="polite"></div>
+    </section>
+
+    <footer class="site-footer">
+      <div>
+        <strong id="footerSeller">판매자</strong>
+        <span>Open Chat Market</span>
+      </div>
+      <p>거래 전 상품 상태와 수량을 오픈프로필에서 최종 확인해주세요.</p>
+    </footer>
+  </main>
+
+  <nav class="mobile-dock" aria-label="빠른 메뉴">
+    <a href="#" class="dock-active" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
+      <svg viewBox="0 0 24 24"><path d="M4 11 12 4l8 7v9h-6v-6h-4v6H4z"/></svg><span>홈</span>
+    </a>
+    <a href="#market" onclick="document.querySelector('.market-section').scrollIntoView({behavior:'smooth'});return false;">
+      <svg viewBox="0 0 24 24"><path d="M5 6h14l-1 13H6zM8 6a4 4 0 0 1 8 0"/></svg><span>아이템</span>
+    </a>
+    <button id="dockProfile" type="button">
+      <svg viewBox="0 0 24 24"><path d="M8 12h8m-4-4 4 4-4 4M4 5h16v14H4z"/></svg><span>문의</span>
+    </button>
+  </nav>
+
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal></div>
+    <article class="product-sheet" role="dialog" aria-modal="true" aria-labelledby="detailName">
+      <button class="sheet-close" id="closeBtn" type="button" aria-label="닫기">×</button>
+      <div class="detail-media">
+        <img id="detailImage" alt="상품 이미지">
+        <span class="image-badge">AVAILABLE</span>
+      </div>
+      <div class="detail-body">
+        <span class="micro-label" id="detailSeller"></span>
+        <h2 id="detailName"></h2>
+        <div class="detail-meta">
+          <span id="detailPrice"></span>
+          <span id="detailQty"></span>
+        </div>
+        <div class="detail-divider"></div>
+        <h3>상세 정보</h3>
+        <p id="detailText"></p>
+        <a class="profile-btn" id="profileBtn" target="_blank" rel="noopener">오픈프로필에서 문의하기 <span>↗</span></a>
+      </div>
+    </article>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="./app.js"></script>
+</body>
+</html>

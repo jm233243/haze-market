@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#070708">
+  <meta name="color-scheme" content="dark">
+  <title>Trade Console</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body class="admin-page">
+  <div class="noise" aria-hidden="true"></div>
+  <div class="aurora aurora-admin" aria-hidden="true"></div>
+
+  <main class="admin-shell">
+    <section id="loginView" class="login-stage">
+      <div class="login-brand">
+        <span class="brand-mark"><i></i></span>
+        <span>TRADE OS</span>
+      </div>
+      <div class="login-card glass-card">
+        <span class="micro-label">PRIVATE ACCESS</span>
+        <h1>관리자 콘솔</h1>
+        <p>판매 아이템을 등록하고 수정하는 전용 공간입니다.</p>
+        <form id="loginForm">
+          <label class="modern-field">
+            <span>관리자 비밀번호</span>
+            <input id="password" type="password" autocomplete="current-password" required placeholder="비밀번호 입력">
+          </label>
+          <button class="primary-button" type="submit">콘솔 열기 <span>→</span></button>
+          <div class="error" id="loginError"></div>
+        </form>
+      </div>
+      <a class="back-store" href="./index.html">← 거래 페이지로 돌아가기</a>
+    </section>
+
+    <section id="adminView" class="hidden dashboard">
+      <header class="dashboard-top glassbar">
+        <div class="dash-brand">
+          <span class="brand-mark small"><i></i></span>
+          <div><span class="micro-label">TRADE OS</span><strong>관리자 콘솔</strong></div>
+        </div>
+        <div class="dash-actions">
+          <a class="ghost-button" href="./index.html" target="_blank">거래글 미리보기 ↗</a>
+          <button class="round-action" id="logoutBtn" type="button" title="로그아웃">
+            <svg viewBox="0 0 24 24"><path d="M10 5H5v14h5M14 8l4 4-4 4m4-4H9"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <div class="dashboard-heading">
+        <div><span class="section-kicker">CONTROL CENTER</span><h1>거래글 관리</h1><p>상품을 추가하면 공개 거래 페이지에 바로 반영됩니다.</p></div>
+        <div class="summary-card"><span>등록 상품</span><strong id="countLabel">0</strong></div>
+      </div>
+
+      <div class="admin-layout">
+        <section class="editor-panel glass-card">
+          <div class="panel-heading">
+            <div><span class="micro-label">EDITOR</span><h2 id="formHeading">새 아이템 추가</h2></div>
+            <button class="text-button hidden" id="cancelEdit" type="button">수정 취소</button>
+          </div>
+          <form id="itemForm">
+            <input type="hidden" id="itemId">
+            <label class="modern-field"><span>아이템 이름</span><input id="name" required placeholder="예: 네온 블레이드"></label>
+            <div class="field-row">
+              <label class="modern-field"><span>수량</span><input id="quantity" type="number" min="0" value="1" required></label>
+              <label class="modern-field"><span>가격</span><div class="input-suffix"><input id="price" type="number" min="0" required placeholder="15000"><i>원</i></div></label>
+            </div>
+            <label class="modern-field"><span>상품 사진</span><input id="imageFile" class="file-input" type="file" accept="image/jpeg,image/png,image/webp,image/gif"><small class="field-help">PC 또는 휴대폰에서 사진을 선택해 주세요. 최대 8MB</small></label><input id="image" type="hidden">
+            <label class="modern-field"><span>한 줄 설명</span><input id="description" maxlength="160" placeholder="상태 좋음 · 즉시 거래 가능"></label>
+            <label class="modern-field"><span>상세 정보</span><textarea id="details" maxlength="1200" placeholder="거래 조건, 상태, 참고사항 등을 입력하세요."></textarea></label>
+            <div class="image-preview-wrap hidden" id="imagePreviewWrap"><img id="imagePreview" alt="이미지 미리보기"><span>이미지 미리보기</span></div>
+            <button class="primary-button" type="submit" id="submitBtn">아이템 등록 <span>→</span></button>
+            <div class="error" id="formError"></div>
+          </form>
+        </section>
+
+        <section class="inventory-panel">
+          <div class="inventory-toolbar">
+            <div><span class="micro-label">INVENTORY</span><h2>등록된 아이템</h2></div>
+            <span class="sync-label"><i></i> LIVE SYNC</span>
+          </div>
+          <div class="inventory-list" id="itemList"></div>
+        </section>
+      </div>
+    </section>
+  </main>
+  <script src="./admin.js"></script>
+</body>
+</html>
